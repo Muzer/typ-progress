@@ -1,0 +1,76 @@
+\documentclass[a4paper,12pt]{article}
+\title{A real time train information and prediction system for the London Underground --- progress report}
+\author{Murray Colpman --- Supervisor: Nick Gibbins}
+\begin{document}
+\begin{titlepage}
+  \begin{center}
+    \textsc{\Large Electronics and Computer Science}\\
+    \textsc{\Large Faculty of Physical Sciences and Engineering}\\
+    \textsc{\Large University of Southampton}\\[1.5cm]
+    \textsc{\Large Murray Colpman}\\
+    \textsc{\Large \today}\\[1.5cm]
+    \textsc{\LARGE A real time train information and prediction system for the London Underground}\\[1.5cm]
+    \textsc{\large Project supervisor: Nick Gibbins}\\
+    \textsc{\large Second examiner: Iain McNally}\\[1.5cm]
+    \textsc{\large A project progress report submitted for the award of}\\
+    \textsc{\large MEng Computer Science - 4443}
+  \end{center}
+\end{titlepage}
+
+\section*{Project description}
+
+Although the London Underground has an information system, there is currently
+no publicly-available software to track individual trains through the system,
+nor is there a way to view the timetable (both planned and predicted) from each
+station more than a few trains in advance. This has been done for the National
+Rail network, but such a thing has not been attempted for the London
+Underground yet.
+
+Such a tracking system would not only be useful for rail enthusiasts, for
+example trying to follow a delayed steam service around the network or to
+follow a particular train of interest, but would also be very useful for making
+a variety of inferences about the network.
+
+The project does not come without its difficulties, however. The main source of
+data is from a service called TrackerNet, but this data is cached for around
+thirty seconds to prevent flooding. The main accurate source of location is the
+signalling block in which the train is located (the track code).  However,
+there is no map of where these track codes are in reality. Finally, there
+appears to be no common identifier between the timetable data and the live
+data.
+
+\subsection*{Goals and scope}
+
+\begin{enumerate}
+  \item To produce a software system to track trains throughout the London
+    Underground System and store the results of past days
+  \item To infer the working timetable for this data by averaging past runs
+  \item To produce a user interface for viewing this data per-station or
+    per-train
+  \item To expand the system to predict the future arrival and departure times
+    of trains, including when forming new services
+  \item To produce a topological map of track codes, and to use this map to
+    further improve the predictions
+\end{enumerate}
+
+The main project comprises goals 1-3. Goals 4 and 5 are stretch goals.
+Evaluation of the main project can be performed by testing a sample of the
+produced timetable manually against the PDF and seeing how well they match.
+Evaluation of goal 4 involves seeing how well the predictions match subsequent
+reality. Evaluation of goal 5 is more difficult --- if a portion of a track
+code map cannot be obtained, checking the map to ensure that at least the track
+layout matches reality would be a reasonable evaluation step.
+
+\section*{Background research}
+
+\section*{Final design and justification}
+
+\section*{Work to date}
+
+\section*{Remaining work}
+
+\section*{Support required}
+
+\section*{Gantt chart}
+
+\end{document}
