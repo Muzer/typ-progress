@@ -1,4 +1,5 @@
 \documentclass[a4paper,12pt]{article}
+\usepackage{hyperref}
 \title{A real time train information and prediction system for the London Underground --- progress report}
 \author{Murray Colpman --- Supervisor: Nick Gibbins}
 \begin{document}
@@ -13,11 +14,27 @@
     \textsc{\large Project supervisor: Nick Gibbins}\\
     \textsc{\large Second examiner: Iain McNally}\\[1.5cm]
     \textsc{\large A project progress report submitted for the award of}\\
-    \textsc{\large MEng Computer Science - 4443}
+    \textsc{\large MEng Computer Science --- 4443}
   \end{center}
 \end{titlepage}
 
 \section*{Abstract}
+
+The London Underground currently lacks publicly-available software allowing its
+users to track individual trains through the system. This project aims to
+resolve this by creating a system to allow the user to view a list of trains
+due to depart each station along with ones already departed, and to allow the
+user to select a train to view its course throughout the system. So far,
+background research has been performed, the overall design of the system has
+been decided and a basic implementation of a tool to gather the data that will
+be necessary to reconstruct the timetable has been produced, to run over the
+coming months. Most of the implementation is still to be performed, including
+producing an algorithm to reconstruct the timetable based on the real train
+movements over a number of days, and a web interface to navigate around the
+system. The stretch goals are to produce a system to predict times based on
+actual performances of trains, and to produce a map of track codes (signalling
+blocks that trains can occupy) based on the gathered data to further improve
+predictions.
 
 \pagebreak
 
@@ -27,29 +44,106 @@
 
 \section*{Statement of Originality}
 
+This is all my own work except where explicitly indicated otherwise, and all
+sources have been correctly acknowledged.
+
 \pagebreak
 
-\section{Project Description}
+\section{Project Description and Background}
 
-Although the London Underground has an information system, there is currently
-no publicly-available software to track individual trains through the system,
-nor is there a way to view the timetable (both planned and predicted) from each
-station more than a few trains in advance. This has been done for the National
-Rail network, but such a thing has not been attempted for the London
-Underground yet.
+Rail enthusiasts make use of a website called Realtime Trains. For the National
+Rail network (ie the vast majority of heavy rail services in Great Britain),
+this website makes use of open data mainly from four sources, all provided by
+Network Rail (the public body that owns and maintains the infrastructure and
+operates signalling equipment)\cite{RTTData}:
+
+\begin{itemize}
+  \item TRUST, providing push data about trains passing certain timing points
+    (mostly stations and junctions)
+  \item TD, push data providing the train describer berth (which corresponds to
+    a signalling section) that a given train is occupying --- cross-referenced
+    with TRUST data to give more accurate predictions and platform alterations
+  \item Schedule, pull data providing timetables for passenger and freight
+    trains including changes to usual services (for engineering works, for
+    example)
+  \item VSTP, push data providing very short notice alterations to schedules
+\end{itemize}
+
+Realtime Trains uses these data sources to give views for the general public to
+let people know where their train is, and to predict arrival times. It also has
+a detailed view, allowing enthusiasts to see non-passenger trains, trains not
+booked to stop at the station, detailed information about the routes trains are
+booked to take (and actually take), and more detailed timing points. This can
+be used by rail enthusiasts to track the position of a train they're interested
+in, to track the train they're currently riding on to work out delays, or to
+just see if any interesting trains are passing through a station.
+
+The London Underground, despite having a few areas of overlapping operation, is
+not generally a part of the National Rail network, and so Realtime Trains does
+not allow you to view information for the vast majority of the 270 stations
+served by the London Underground.
+
+Although the London Underground has an information system geared towards the
+general public, there is currently no publicly-available software to track
+individual trains through the system, nor is there a way to view the timetable
+(both planned and predicted) from each station more than a few trains in
+advance. Instead, the Transport for London website concentrates on ``live
+departure board'' style data, showing for each station when the next trains are
+due.
 
 Such a tracking system would not only be useful for rail enthusiasts, for
 example trying to follow a delayed steam service around the network or to
 follow a particular train of interest, but would also be very useful for making
 a variety of inferences about the network.
 
-The project does not come without its difficulties, however. The main source of
-data is from a service called TrackerNet, but this data is cached for around
-thirty seconds to prevent flooding. The main accurate source of location is the
-signalling block in which the train is located (the track code).  However,
-there is no map of where these track codes are in reality. Finally, there
-appears to be no common identifier between the timetable data and the live
-data.
+The main source of open data comes from a system called TrackerNet. TrackerNet
+is a pull-based system, rather than being push-based, so a request must be made
+by the client every time new data is desired. Data is requested over HTTP and
+returned in an XML format. To prevent flooding, this data is cached for around
+thirty seconds (according to the specification --- in reality, caching up to a
+minute is common).
+
+There are four main endpoints available when using this data --- LineStatus,
+which returns overview information about the operation of each line (whether
+there is disruption or closures), StationStatus which gives similar information
+about stations (closures, etc.), PredictionSummary which gives basic train
+prediction information on a per-line basis, and PredictionDetailed which gives
+more detailed train prediction information. This is requested on a per-station
+and per-line basis\cite{TrackerNetSpec}. Therefore, one request per station per
+line is required (349 in total) per half minute, should all stations be
+desired. When this report refers to TrackerNet, unless otherwise stated the
+PredictionDetailed endpoint is meant.
+
+This data contains an attribute called TrackCode, which is the most accurate
+source of location data --- it represents the current signalling block in which
+the train is located (or more accurately, the current track circuit or axle
+counter section which it occupies --- these being two different methods of train
+detection). However, there is no publicly-available data to represent the
+location of track codes, neither geographical nor topological. The caching of
+data and the fact that some track codes are quite short (less than 30 seconds
+apart) means that it is less than trivial to construct such a map.
+
+There is another source of data --- the public timetable as used by the TfL
+journey planner. It is stored in a format known as TransXChange, a format
+developed as a national standard for storing UK bus
+timetables\cite{TransXChangeSpec}. Unfortunately, however, this data does not
+receive any supplements for engineering works or alterations to the usual
+timetable. It also doesn't contain non-passenger trains, like empty workings or
+engineering trains, which would be important to enthusiasts. Finally, and most
+importantly, as far as I have been able to ascertain there is no way to relate
+this data with the live data.
+
+There are also PDF working timetables available\cite{TfLWTT}, which do contain
+all trains and do contain IDs which can be cross-referenced with the live data
+--- a set number, representing one particular train's workings throughout the
+day (though the physical train used to form this set will be different on
+different days, the set number is displayed using a dot-matrix LED or
+mechanical display in a prominent position on the front of the train); and a
+trip number, which increments each time the train terminates and forms a new
+working (and is not displayed).
+
+From the constraints of the data available and the final intent of the project,
+the project goals were quite easy to specify.
 
 \subsection{Goals and scope}
 
@@ -57,25 +151,32 @@ data.
   \item To produce a software system to track trains throughout the London
     Underground System and store the results of past days
   \item To infer the working timetable for this data by averaging past runs
-  \item To produce a user interface for viewing this data per-station or
-    per-train
+  \item To produce a web-based user interface for viewing this data per-station
+    or per-train
   \item To expand the system to predict the future arrival and departure times
     of trains, including when forming new services
   \item To produce a topological map of track codes, and to use this map to
     further improve the predictions
 \end{enumerate}
 
-The main project comprises goals 1-3. Goals 4 and 5 are stretch goals.
+The main project comprises goals 1--3. Goals 4 and 5 are stretch goals.
 Evaluation of the main project can be performed by testing a sample of the
 produced timetable manually against the PDF and seeing how well they match.
 Evaluation of goal 4 involves seeing how well the predictions match subsequent
 reality. Evaluation of goal 5 is more difficult --- if a portion of a track
 code map cannot be obtained, checking the map to ensure that at least the track
-layout matches reality would be a reasonable evaluation step.
+layout matches reality (maps of the London Underground track layout not
+including signalling or track code data dating from November 2008, which for
+most purposes is new enough, are commercially available from TRACKmaps) would
+be a reasonable evaluation step.
 
 \section{Background research}
 
-\section{Final design and justification}
+The state of open data in railways is rather poor, but improving. 
+
+\section{Potential approaches}
+
+\section{Final approach and justification}
 
 \section{Work to date}
 
