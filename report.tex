@@ -51,11 +51,14 @@ sources have been correctly acknowledged.
 
 \section{Project Description and Background}
 
-Rail enthusiasts make use of a website called Realtime Trains. For the National
-Rail network (ie the vast majority of heavy rail services in Great Britain),
-this website makes use of open data mainly from four sources, all provided by
-Network Rail (the public body that owns and maintains the infrastructure and
-operates signalling equipment)\cite{RTTData}:
+\subsection{Realtime Trains --- an information system for the national railway network}
+
+Rail enthusiasts make use of a website called Realtime Trains. For what is
+generally referred to as the National Rail network, on which the vast majority
+of heavy rail services in Great Britain run, this website makes use of open
+data mainly from four sources, all provided by Network Rail (the public body
+that owns and maintains the infrastructure and operates signalling
+equipment for nearly all of the network)\cite{RTTData}:
 
 \begin{itemize}
   \item TRUST, providing push data about trains passing certain timing points
@@ -77,6 +80,8 @@ booked to take (and actually take), and more detailed timing points. This can
 be used by rail enthusiasts to track the position of a train they're interested
 in, to track the train they're currently riding on to work out delays, or to
 just see if any interesting trains are passing through a station.
+
+\subsection{Adapting the concept to the London Underground}
 
 The London Underground, despite having a few areas of overlapping operation, is
 not generally a part of the National Rail network, and so Realtime Trains does
@@ -142,9 +147,6 @@ mechanical display in a prominent position on the front of the train); and a
 trip number, which increments each time the train terminates and forms a new
 working (and is not displayed).
 
-From the constraints of the data available and the final intent of the project,
-the project goals were quite easy to specify.
-
 \subsection{Goals and scope}
 
 \begin{enumerate}
@@ -167,12 +169,63 @@ reality. Evaluation of goal 5 is more difficult --- if a portion of a track
 code map cannot be obtained, checking the map to ensure that at least the track
 layout matches reality (maps of the London Underground track layout not
 including signalling or track code data dating from November 2008, which for
-most purposes is new enough, are commercially available from TRACKmaps) would
-be a reasonable evaluation step.
+most purposes is new enough, are commercially available from
+TRACKmaps\cite{TRACKmaps5}) would be a reasonable evaluation step.
 
 \section{Background research}
 
-The state of open data in railways is rather poor, but improving. 
+There have been a few analyses published on the state of open data on various
+forms of public transport. This section is intended to summarize this state for
+railways in particular, including light rail and rapid transit systems like the
+London Underground.
+
+The recent Parliamentary Office of Science and Technology
+briefing\cite{POSTnote472} states that the Department for Transport currently
+publishes 255 datasets, of which 244 are issued under the Open Government
+licence, which is a Creative Commons-compatible open data licence. However,
+there are a further 481 datasets that are not currently published --- the vast
+majority. It also states that data is frequently not retained or archived in
+the sector. There is also the issue of the data being usable --- data that is
+hard to use, or that is of questionable quality, will not encourage as much
+usage as good quality and easy to use data. Fixing these issues may be
+expensive and time-consuming, so there is a trade-off involved in opening up
+data. It is worth noting that one user of Transport for London's London
+Underground open data, the author of Twitter bot @whensmytube, noted that it is
+much more difficult to use and less useful than the equivalent data for buses
+on his blog\cite{whensmytube}.
+
+However, overprocessing can also be a problem --- it has, for example, been
+argued that raw data is often more useful than data pre-processed, perhaps
+(intentionally or otherwise) with specific use cases in mind that sometimes
+limit use cases that may not have initially been considered\cite{Robinson2009}.
+The wide variety of use cases of open data should be kept in mind --- use cases
+for railway-related data can be split into three broad
+categories\cite{Kuhn2011}: advanced search, useful to allow users to search for
+specific attributes that may not be possible using the operator's own website;
+mashups, which combine railway data with data from other sources (perhaps other
+public transport data to produce a more integrated public transport search
+system); and visualisations, for example a heatmap of areas with most delay, or
+a map showing where trains are physically located --- the latter of which has
+been built for the London Underground using TrackerNet
+data\cite{TrainTimesTube}.
+
+Another survey, of accessibility data in particular, notes the difficulties of
+relating data from multiple sources, and suggests publishing data as linked
+open data to solve this\cite{Ding2014}.
+
+There is also the issue that trains are operated commercially by multiple
+companies, which causes data to be inconsistently available, or available but
+not under open licences. For example, National Rail Enquiries (a part of the
+Association of Train Operating Companies (ATOC), an association of all
+passenger operators on the national network) until recently charged to access
+their data. They now provide free access to individuals and small
+organisations, but still charge a considerable fee for sites which have more
+than five million usages in a four week period, meaning it is not true open
+data, and is still not usable for sites such as Realtime Trains. This data is
+the only source of some information on the National Rail network such as delay
+causes and certain methods for train cancellation\cite{CairnsSeminar2013} (of
+which there are three, only one of which is available through Network Rail's
+open data channels).
 
 \section{Potential approaches}
 
