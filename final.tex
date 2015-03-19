@@ -17,7 +17,7 @@
   stringstyle=\ttfamily,
   showstringspaces=true}
 
-\title{A real time train information and prediction system for the London Underground --- progress report}
+\title{A real time train information and prediction system for the London Underground --- final report}
 \author{Murray Colpman --- Supervisor: Nick Gibbins}
 \begin{document}
 \begin{titlepage}
@@ -30,7 +30,7 @@
     \textsc{\LARGE A real time train information and prediction system for the London Underground}\\[1.5cm]
     \textsc{\large Project supervisor: Nick Gibbins}\\
     \textsc{\large Second examiner: Iain McNally}\\[1.5cm]
-    \textsc{\large A project progress report submitted for the award of}\\
+    \textsc{\large A project report submitted for the award of}\\
     \textsc{\large MEng Computer Science --- 4443}
   \end{center}
 \end{titlepage}
@@ -38,20 +38,15 @@
 \section*{Abstract}
 
 The London Underground currently lacks publicly-available software allowing its
-users to track individual trains through the system. This project aims to
-resolve this by creating a system to allow the user to view a list of trains
-due to depart each station along with ones already departed, and to allow the
-user to select a train to view its course throughout the system. So far,
-background research has been performed, the overall design of the system has
-been decided and a basic implementation of a tool to gather the data that will
-be necessary to reconstruct the timetable has been produced, to run over the
-coming months. Most of the implementation is still to be performed, including
-producing an algorithm to reconstruct the timetable based on the real train
-movements over a number of days, and a web interface to navigate around the
-system. The stretch goals are to produce a system to predict times based on
-actual performances of trains, and to produce a map of track codes (signalling
-blocks that trains can occupy) based on the gathered data to further improve
-predictions.
+users to track individual trains through the system. This project goes a good
+way towards resolving this by creating a system to allow the user to view a
+list of trains due to depart each station along with ones already departed, and
+to allow the user to select a train to view its course throughout the system.
+This system is now complete, including the timetable inference, data collection
+and storage, and web interface, and at a stage where it can be expanded to
+produce a system to predict times based on actual performances of trains, and
+to produce a map of track codes (signalling blocks that trains can occupy)
+based on the gathered data to further improve predictions.
 
 \pagebreak
 
@@ -79,15 +74,15 @@ by train in one day) also offer interest.
 
 All of these tasks are currently hindered by the lack of a publicly-available
 information system that allows the user to track trains through the network,
-and yet the data required to create one is more or less available. This project
-aims to create such a system, allowing the user to view the arrivals and
-departures in the near past, present and the future for a given station, and
-also to track a given train through the system.
+and yet the data required to create one is more or less available. This
+project's aim was therefore to create such a system, allowing the user to view
+the arrivals and departures in the near past, present and the future for a
+given station, and also to track a given train through the system.
 
-Such a system will be primarily designed for rail enthusiasts. But as a
-byproduct of producing the system, data will be collected which will allow a
-few inferences to be made about the system. A small number of these will
-additionally be explored.
+Such a system was be primarily designed for rail enthusiasts. But as a
+byproduct of producing the system, data has been collected which allowed a few
+inferences to be made about the system. A small number of these have
+additionally been explored.
 
 \section{Project Description and Background}
 
@@ -252,7 +247,24 @@ data. This data is the only source of some information on the National Rail
 network such as delay causes and certain methods for train
 cancellation\cite{CairnsSeminar2013}.
 
-\section{Potential approaches (including final approach and justification)}
+\section{Requirements}
+
+\subsection{Nonfunctional}
+
+\begin{enumerate}
+  \item Web interface (req 3)
+  \item etc.
+\end{enumerate}
+
+\subsection{Functional}
+
+\begin{enumerate}
+  \item Gather data constantly from TrackerNet
+  \item Process and store in DB
+  \item etc.
+\end{enumerate}
+
+\section{Design}
 
 \subsection{Database}
 
@@ -393,26 +405,18 @@ module, a module to parse the TrackerNet data, and modules to handle searching
 and templating. The software will be based around station, platform and train
 objects, mirroring the database entries.
 
-\section{Work to date}
+(TODO: elaborate more on rest of design, etc.; update this from progress report
+version)
 
-I have produced an implementation of a tool to gather TrackerNet data for one
-line and dump it in the database. A sample module of this tool is included in
-the Appendix. It contains a complete implementation of a module to download and
-extract data from TrackerNet, an implementation of the write functions for
-database access, definitions of which stations are on which lines (not
-included), a set of classes to store stations, platforms and trains, and a
-script to tie all these together and use them to gather the data in a loop.
+\section{Testing and evaluation}
 
-\section{Remaining work}
+\subsection{Testing}
 
-The database module needs to be able to read from the database. Then I can
-produce another module that infers the timetable. The whole web interface needs
-creating, as does the search engine. Timetable data needs to be stored, and
-combined with the live data.
+Mention here details of test cases, etc.
 
-\section{Support required}
+\subsection{Evaluation}
 
-I do not envisage any support being required.
+Compare here with real timetable, etc.
 
 \section{Time management and Gantt chart}
 
@@ -423,12 +427,16 @@ implementation so experiments can be run to ascertain the best methods.
 
 \includepdf{gantt.pdf}
 
+(Update Gantt chart)
+
 \section{Conclusion}
 
-This project has not reached any unexpected problems, and is currently on time.
-The data available looks to be good enough to be likely to produce reasonable
-results, and I will be continuing the implementation once I have gathered
-enough data over Christmas.
+Summarise what has been done, and reflections about the state of open data in
+general (referring back to lit review, etc.)
+
+\subsection{Further work}
+
+Talk here mostly about stretch goals, etc.
 
 \pagebreak
 
