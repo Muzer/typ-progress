@@ -39,7 +39,7 @@
       <task id="8" name="Outline" note="" work="1008000" duration="1008000" start="20141013T000000Z" end="20141128T170000Z" work-start="20141013T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
         <constraint type="must-start-on" time="20141013T000000Z"/>
       </task>
-      <task id="9" name="Detailed" note="" work="1296000" duration="1296000" start="20141128T170000Z" end="20150130T170000Z" work-start="20141201T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
+      <task id="9" name="Detailed" note="" work="1296000" duration="1296000" start="20141128T170000Z" end="20150130T170000Z" work-start="20141201T080000Z" percent-complete="13" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="8" type="FS"/>
         </predecessors>
@@ -48,28 +48,36 @@
     <task id="10" name="Progress report writing" note="" work="460800" duration="460800" start="20141115T000000Z" end="20141208T170000Z" work-start="20141117T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="start-no-earlier-than" time="20141115T000000Z"/>
     </task>
-    <task id="11" name="Implementation" note="" work="2520900" duration="2275200" start="20141201T000000Z" end="20150319T170000Z" work-start="20141201T080000Z" percent-complete="7" priority="0" type="normal" scheduling="fixed-work">
+    <task id="11" name="Implementation" note="" work="3139200" duration="2304000" start="20141201T000000Z" end="20150320T170000Z" work-start="20141201T080000Z" percent-complete="7" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="start-no-earlier-than" time="20141201T000000Z"/>
-      <task id="12" name="Data gatherer" note="" work="576000" duration="576000" start="20141201T000000Z" end="20141226T170000Z" work-start="20141201T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
+      <task id="12" name="Data gatherer" note="" work="172800" duration="172800" start="20141201T000000Z" end="20141208T170000Z" work-start="20141201T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
         <constraint type="must-start-on" time="20141201T000000Z"/>
       </task>
-      <task id="13" name="Timetable inference" note="" work="1109700" duration="1109700" start="20150101T000000Z" end="20150224T131500Z" work-start="20150101T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
-        <constraint type="start-no-earlier-than" time="20150101T000000Z"/>
+      <task id="13" name="Timetable inference" note="" work="1109700" duration="1109700" start="20141208T170000Z" end="20150130T131500Z" work-start="20141209T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="10" type="FS"/>
         </predecessors>
       </task>
-      <task id="14" name="Web interface" note="" work="835200" duration="835200" start="20150209T000000Z" end="20150319T170000Z" work-start="20150209T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
-        <constraint type="start-no-earlier-than" time="20150209T000000Z"/>
+      <task id="14" name="Web interface" note="" work="835200" duration="835200" start="20141208T170000Z" end="20150116T170000Z" work-start="20141209T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="10" type="FS"/>
         </predecessors>
       </task>
+      <task id="15" name="Prediction" note="" work="589500" duration="589500" start="20150130T131500Z" end="20150227T170000Z" work-start="20150130T131500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="13" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="16" name="Track Codes" note="" work="432000" duration="432000" start="20150227T170000Z" end="20150320T170000Z" work-start="20150302T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="15" type="FS"/>
+        </predecessors>
+      </task>
     </task>
-    <task id="15" name="Evaluation" note="" work="864000" duration="864000" start="20150315T000000Z" end="20150424T170000Z" work-start="20150316T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="start-no-earlier-than" time="20150315T000000Z"/>
+    <task id="17" name="Evaluation" note="" work="864000" duration="864000" start="20150301T000000Z" end="20150410T170000Z" work-start="20150302T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="start-no-earlier-than" time="20150301T000000Z"/>
     </task>
-    <task id="16" name="Report writing" note="" work="748800" duration="748800" start="20150323T000000Z" end="20150427T170000Z" work-start="20150323T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
+    <task id="18" name="Report writing" note="" work="748800" duration="748800" start="20150323T000000Z" end="20150427T170000Z" work-start="20150323T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="start-no-earlier-than" time="20150323T000000Z"/>
     </task>
   </tasks>

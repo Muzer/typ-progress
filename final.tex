@@ -1,9 +1,10 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,12pt]{report}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{pdfpages}
 \usepackage{color}
+\usepackage{titlesec}
 \lstset{breaklines=true}
 \lstset{basicstyle=\small\ttfamily}
 \lstset{columns=fixed}
@@ -16,6 +17,9 @@
   commentstyle=\color{Brown},
   stringstyle=\ttfamily,
   showstringspaces=true}
+
+\titleformat{\chapter}[block]
+{\normalfont\huge\bfseries}{\thechapter.}{1em}{\Huge}
 
 \title{A real time train information and prediction system for the London Underground --- final report}
 \author{Murray Colpman --- Supervisor: Nick Gibbins}
@@ -35,7 +39,7 @@
   \end{center}
 \end{titlepage}
 
-\section*{Abstract}
+\chapter*{Abstract}
 
 The London Underground currently lacks publicly-available software allowing its
 users to track individual trains through the system. This project goes a good
@@ -54,14 +58,22 @@ based on the gathered data to further improve predictions.
 
 \pagebreak
 
-\section*{Statement of Originality}
+\chapter*{Statement of Originality}
 
-This is all my own work except where explicitly indicated otherwise, and all
-sources have been correctly acknowledged.
+This is all my own work except where explicitly indicated otherwise, and except
+for the ``static'' directory in the submitted code, which contains pre-packaged
+software such as Twitter Bootstrap and Moment which I did not write, and the
+``templates'' directory, the files in which were originally based on a Twitter
+Bootstrap example template (heavily modified to produce the site). All sources
+have been correctly acknowledged. 
+
+My thanks go to Tom Cairns for providing the inspiration for this project with
+Realtime Trains. Thanks also to my supervisor, Nick Gibbins; and second
+examiner, Iain McNally; for their time and useful feedback.
 
 \pagebreak
 
-\section{Introduction}
+\chapter{Introduction}
 
 The London Underground is a source of great interest for rail enthusiasts. With
 its own rich history, there are occasional heritage operations such as the
@@ -79,14 +91,12 @@ project's aim was therefore to create such a system, allowing the user to view
 the arrivals and departures in the near past, present and the future for a
 given station, and also to track a given train through the system.
 
-Such a system was be primarily designed for rail enthusiasts. But as a
-byproduct of producing the system, data has been collected which allowed a few
-inferences to be made about the system. A small number of these have
-additionally been explored.
+Such a system was primarily designed for rail enthusiasts. But as a byproduct
+of producing the system, data has been collected which allowed a few inferences
+to be made about the system. A small number of these have additionally been
+explored.
 
-\section{Project Description and Background}
-
-\subsection{Realtime Trains --- an information system for the national railway
+\section{Realtime Trains --- an information system for the national railway
 network}
 
 Rail enthusiasts make use of a website called Realtime Trains. For the National
@@ -116,7 +126,7 @@ booked to take (and actually take), and more detailed timing points. This can
 be used by enthusiasts to track the position of a train they're interested in,
 or just to see if any interesting trains are passing through a station.
 
-\subsection{Adapting the concept to the London Underground}
+\section{Adapting the concept to the London Underground}
 
 The London Underground, despite having a few areas of overlapping operation, is
 not generally a part of the National Rail network, and so Realtime Trains does
@@ -157,14 +167,14 @@ the location of track codes, neither geographical nor topological. The caching
 of data and the fact that some track codes are quite short (less than 30
 seconds apart) means that it is less than trivial to construct such a map.
 
-There is another source of data --- the public timetable as used by the TfL
-journey planner. It is stored in a format known as TransXChange, a format
-developed as a national standard for storing UK bus
+There is another source of data --- the public timetable as used by the
+Transport for London journey planner. It is stored in a format known as
+TransXChange, a format developed as a national standard for storing UK bus
 timetables\cite{TransXChangeSpec}. Unfortunately, this data does not receive
 any supplements for engineering works or alterations to the usual timetable. It
 also doesn't contain non-passenger trains, like empty workings or engineering
-trains, which would be important to enthusiasts. Finally and crucially, as far
-as I can tell there is no way to relate this data with the live data.
+trains, which would be important to enthusiasts. Finally and crucially, there
+does not appear to be a way to relate this data with the live data.
 
 There are also PDF working timetables available\cite{TfLWTT}, which do contain
 all trains and do contain IDs which can be cross-referenced with the live data
@@ -172,22 +182,22 @@ all trains and do contain IDs which can be cross-referenced with the live data
 day; and a trip number, which increments each time the train terminates and
 forms a new working.
 
-\subsection{Goals and scope}
+\section{Goals and scope}
 
 \begin{enumerate}
   \item To produce a software system to track trains throughout the London
-    Underground System and store the results of past days
-  \item To infer the working timetable for this data by averaging past runs
+    Underground System and store the results of past days.
+  \item To infer the working timetable for this data by averaging past runs.
   \item To produce a web-based user interface for viewing this data per-station
-    or per-train
+    or per-train.
   \item To expand the system to predict the future arrival and departure times
-    of trains, including when forming new services
+    of trains, including when forming new services. This is a stretch goal.
   \item To produce a topological map of track codes, and to use this map to
-    further improve the predictions
+    further improve the predictions. This is a stretch goal.
 \end{enumerate}
 
 The main project comprises goals 1--3. Goals 4 and 5 are stretch goals.
-Evaluation of the main project can be performed by testing a sample of the
+Evaluation of the main project has been performed by testing a sample of the
 produced timetable manually against the PDF and seeing how well they match.
 Evaluation of goal 4 involves seeing how well the predictions match subsequent
 reality. Evaluation of goal 5 is more difficult --- if a portion of a track
@@ -196,10 +206,10 @@ layout matches reality (maps of the London Underground track layout not
 including signalling or track code data are commercially available from
 TRACKmaps\cite{TRACKmaps5}) would be a reasonable evaluation step.
 
-\section{Background research}
+\chapter{Background}
 
 There have been a few analyses published on the state of open data on various
-forms of public transport. This section is intended to summarize this state for
+forms of public transport. This chapter is intended to summarize this state for
 railways in particular, including light rail and rapid transit systems like the
 London Underground.
 
@@ -214,9 +224,9 @@ hard to use, or that is of questionable quality, will not encourage as much
 usage as good quality and easy to use data. Fixing these issues may be
 expensive and time-consuming, so there is a trade-off involved in opening up
 data. It is worth noting that one user of Transport for London's London
-Underground open data, the author of Twitter bot @whensmytube, noted that it is
-much more difficult to use and less useful than the equivalent data for buses
-on his blog\cite{whensmytube}.
+Underground open data, the developer of Twitter bot @whensmytube, noted on his
+blog that the London Underground open data is much more difficult to use and
+less useful than the equivalent data for buses\cite{whensmytube}.
 
 However, over-processing can also be a problem --- it has, for example, been
 argued that raw data is often more useful than data pre-processed, perhaps
@@ -247,26 +257,42 @@ data. This data is the only source of some information on the National Rail
 network such as delay causes and certain methods for train
 cancellation\cite{CairnsSeminar2013}.
 
-\section{Requirements}
+\chapter{Requirements}
 
-\subsection{Nonfunctional}
-
-\begin{enumerate}
-  \item Web interface (req 3)
-  \item etc.
-\end{enumerate}
-
-\subsection{Functional}
+\section{Functional}
 
 \begin{enumerate}
-  \item Gather data constantly from TrackerNet
-  \item Process and store in DB
-  \item etc.
+  \item The system should constantly gather data from TrackerNet about train
+    locations. (Goal 1)
+  \item The system should save this data into a MySQL database. (Goal 1)
+  \item The system should convert the observations of the positions of trains
+    to train arrival and departure times for each station and save these into
+    the database. (Goal 1)
+  \item The system should, given a reasonable quantity of data collected, be
+    able to calculate a likely working timetable from the arrival and departure
+    data and save this into the database. (Goal 2)
+  \item The system should have a web-based user interface. (Goal 3)
+  \item This interface should have a station view, allowing stations to be
+    searched for and all the trains arriving/departing that station, both in
+    the working timetable and in observed reality, displayed. (Goal 3)
+  \item This interface should also have a train view, allowing all the stops
+    for a given train to be viewed, both in the working timetable and in
+    reality. (Goal 3)
 \end{enumerate}
 
-\section{Design}
+\section{Nonfunctional}
 
-\subsection{Database}
+\begin{enumerate}
+  \item The system should run on a typical Linux server, and not require an X
+    server.
+  \item The system should be able to collect data fast enough so as not to miss
+    any significant data.
+  \item The system should be fast enough for the web interface to be usable.
+\end{enumerate}
+
+\chapter{Design}
+
+\section{Database}
 
 A database is required to store past data, both for retrieval and for making
 inferences.
@@ -294,16 +320,20 @@ empty string for the track code.
 There is also the possibility of tailoring the data for specific purposes ---
 for example pre-calculating parts of averages of arrival times so that
 relatively little database access would be needed to calculate the inferred
-timetable, or even storing the same data multiple times in different structures
-entirely for different purposes.
+timetable, or storing the same data multiple times in different structures
+entirely for different purposes. The latter of these would be useful for
+storing things such as the inferred timetable and actual arrival/departure
+times calculated from observations, such that the expensive task of
+recalculating upon each access need not be performed.
 
-Storing data in its rawest form seems most useful, and it will
-always be possible to incorporate aspects of the other ideas above should
-calculations prove too slow in practice, once enough data has been collected.
-However, some irrelevant, broken or not implemented data should not be saved to
-the database.
+Storing data in its rawest form seems most useful, especially since it is
+always possible to incorporate aspects of the other ideas above should
+calculations prove too slow in practice. As mentioned above, separate tables
+are also used for storage of train arrivals and departures, and for inferred
+timetables. However, some irrelevant, broken or not implemented data should not
+be saved to the database.
 
-Therefore, there will be three main tables:
+Therefore, there are five main tables:
 \begin{itemize}
   \item stations --- one entry per station per line. Containing lineCode and
     code (which form a primary key), lineName and name.
@@ -319,6 +349,17 @@ Therefore, there will be three main tables:
     (when the data was created that identifies this particular location), along
     with foreign keys stationLineCode, stationCode and platformNumber
     referencing platforms.
+  \item trainsArrDep --- one entry per train per station used by that train.
+    Contains calculated arrival and departure times for each train for each
+    station. Containing lcid, setNo and tripNo, destination, destCode, ln,
+    stationCode, stationLineCode, platformNumber, arrTime and depTime.
+    stationCode, stationLineCode and platformNumber are foreign keys.
+  \item timetables --- one entry per train, generalised for a day. Separate
+    entries for weekdays, Saturdays and Sundays. Containing setNo, tripNo,
+    destination, destCode, stationCode, stationLineCode, platformNumber,
+    arrTime, depTime, dateCreated (the timestamp when the timetable was
+    calculated), and daysOfWeek (``W'' for weekdays, ``S'' for Saturdays, and
+    ``U'' for Sundays).
 \end{itemize}
 
 \begin{figure}[h]
@@ -328,7 +369,7 @@ Therefore, there will be three main tables:
   \label{fig:erd}
 \end{figure}
 
-\subsection{Language choice}
+\section{Language choice}
 
 The programming language in which the program is to be written is important. A
 good choice in language can make a project easy to build and maintain and
@@ -357,7 +398,15 @@ developments. However, despite these minor drawbacks, it is still, in my
 opinion, the best language for this particular job, so I will be using it for
 all server-side design.
 
-\subsection{Client-side website}
+Flask is the obvious choice for web development in Python, since it is
+lightweight and easy to use, and powerful enough for this purpose.
+
+\section{Tools}
+
+Vim is used as a text editor, since I am familiar with it. Version control is
+performed through Git, with a private GitHub repository.
+
+\section{Client-side website}
 
 Since this project is mostly geared towards the backend than the frontend, I
 need a simple web client that requires little set up and does not do much
@@ -374,6 +423,12 @@ filters; and a page for a single train's locations (past, present and future).
 No alternative designs come to mind for this, and this design matches that of
 most similar sites such as Realtime Trains, Open Train Times and National Rail
 Enquiries.
+
+URLs will be structured as follows:
+
+/station/lineCode/stationCode/year/month/day/time --- station page
+
+/train/lineCode/trainNo/tripNo/year/month/day/time --- train page
 
 \begin{figure}[h]
   \centering
@@ -394,49 +449,222 @@ Enquiries.
   \label{fig:screen3}
 \end{figure}
 
-\subsection{Software design}
+\section{Software design}
 
-The software itself will be split up into modules. There will be a few entry
-points to the software --- different scripts tying the modules together in
-different ways. For example, there will be the data-gathering script, the web
-server script (HTML output through a templating library along with raw JSON)
-and the timetable inference tool. The modules will include a database access
-module, a module to parse the TrackerNet data, and modules to handle searching
-and templating. The software will be based around station, platform and train
-objects, mirroring the database entries.
+The software's overall design consists of a number of Python modules, a few of
+which are entry points (ie executable in their own right). This is based on the
+general structure required for the software itself --- not monolithic, but
+instead a number of distinct tools sharing common code.
 
-(TODO: elaborate more on rest of design, etc.; update this from progress report
-version)
+List of modules:
+\begin{itemize}
+  \item \texttt{data\_logger}: Entry point for the data logger. Execute it to
+    start collecting data from TrackerNet and storing in database.
+  \item \texttt{database\_access}: Provides functions to manipulate the
+    database.
+  \item \texttt{generate\_wtt}: Entry point for timetable inference. Execute it
+    to generate a working timetable from the collected data.
+  \item \texttt{linedefs}: Contains definitions for all the stations on each
+    line, used for gathering data.
+  \item \texttt{station}: Contains class definitions for station, platform and
+    train classes.
+  \item \texttt{timetable\_analyser}: Contains various functions to do with
+    analysis of trains and timetable data.
+  \item \texttt{timetable\_example}: Entry point for example usage of the
+    timetable inference. Calculates a median for one particular example train.
+  \item \texttt{trackernet\_access}: Contains functions to get data from
+    TrackerNet.
+  \item \texttt{ui}: Entry point for web interface. Runs a development server
+    when executed.
+\end{itemize}
 
-\section{Testing and evaluation}
+Object orientation is used sparingly, only where it adds to simplicity. This is
+most useful for code relating to the data logger, as it involves taking data
+from one highly structured source and sending it to another, with some
+processing. Storing this data as objects for manipulation purposes makes sense
+here. However, for the web interface, where data from disparate sources needs
+to be combined, often with missing fields, I found Python dicts to be a more
+appropriate and flexible method of storage. In addition, Flask handles these
+natively.
 
-\subsection{Testing}
+\section{Algorithms}
 
-Mention here details of test cases, etc.
+There are a few simple algorithms required for this project, most notably in
+the timetable analyser module.
 
-\subsection{Evaluation}
+This algorithm is used to calculate the values to go into an arrival/departure
+record, based on observed movements.
 
-Compare here with real timetable, etc.
+\begin{lstlisting}
+IF NOT arrDepRecordExists(train):
+  arrTime = train.whenCreated + train.secondsTo
+  depTime = arrTime + dwellTime # dwellTime 20 secs for Victoria line
+ELSE:
+  result = getPreviousRecord(train)
+  oldArrTime = result.arrTime
+  oldDepTime = result.depTime
+  IF train.secondsTo == 0:
+    IF train.whenCreated < oldArrTime:
+      arrTime = train.whenCreated # train arrived early
+    ELSE:
+      arrTime = oldArrTime # train (probably) arrived when expected
+    IF train.whenCreated > oldDepTime: # train hasn't left when expected
+      depTime = train.whenCreated
+    ELSE:
+      depTime = oldDepTime
+  ELSE:
+    arrTime = train.whenCreated + train.secondsTo
+    depTime = arrTime + dwellTime
+addArrDepRecordToDb(train, arrTime, depTime)
+\end{lstlisting}
 
-\section{Time management and Gantt chart}
+\chapter{Implementation}
 
-Good time management is important in this project. So far, the project has been
-more or less on schedule; although there are some aspects of design that are
-not yet finalised, these require data to be gathered for the current
-implementation so experiments can be run to ascertain the best methods.
+The implementation took 1266 lines of Python, with 290 lines of HTML templates
+and some miscellaneous JavaScript and CSS libraries not written by me as well.
+
+All code was run through pylint. Due to differing naming conventions among
+other things, full pylint compliance was not practical, but where possible
+modifications were made to improve compliance.
+
+The implementation was left deliberately line-agnostic, but most development
+concentrated on using data from the Victoria line. This is because with a
+limited computer and network connection on which to run the software, I had to
+concentrate on just one line. The Victoria line is simpler with fewer edge
+cases, so is more suitable as a starting point than some others.
+
+\chapter{Testing and evaluation}
+
+\section{Testing}
+
+Due to the nature of the project (accessing many external systems that are hard
+to control or mock), unit testing has proven quite difficult. However, unit
+tests have been written for the timetable analyser module, testing all
+functions that are used elsewhere.
+
+A brief testing plan was also drawn up to determine most likely points of
+failure that need testing. In summary:
+
+\begin{itemize}
+  \item Searching for trains at various types of station, including Seven
+    Sisters (at which some trains terminate), Brixton and Walthamstow Central,
+    along with more usual intermediate stations. This is to ensure that termini
+    work acceptably well in the interface.
+  \item Testing around midnight. This brought up quite a few bugs that needed
+    fixing. Searching for trains at midnight exactly, and clicking on an actual
+    train that passed through midnight, all had to be tested.
+  \item Testing various combinations of case and substrings in the station/line
+    search functionality.
+  \item Ensuring that all three cases of trains are tested --- ones with real
+    running but no timetable, ones with timetable but not real running, and
+    ones with both.
+  \item Ensuring the screen is still readable when shrunk down to mobile size.
+\end{itemize}
+
+\section{Evaluation}
+
+Only the main goals were completed; none of the stretch goals were managed.
+
+As mentioned in the scope definition, the main source of evaluation is by
+manually comparing a sample of the generated timetable with the actual (PDF)
+timetable, to see how well they match up. Therefore, I picked five trains at
+random to perform this testing. A list can be found in Appendix B. In summary,
+aside from one outlier with a 28 minute difference, timetable data was never
+more than 5 minutes out from the real timetable, and the average error minutes
+per station were less than 1 for three out of five trains.
+
+Most error has often occurred on terminus stations, or those with large waits.
+In some cases this cannot be helped, but in others it might be possible to
+mitigate against some of these errors.
+
+Although valid timetables have shown to be quite accurate, while browsing the
+site I have occasionally noticed anomalies like timetables for trains that
+don't exist, and were (perhaps) caused by erroneous data. More heuristics to
+decide which trains are likely to be real would fix this --- eliminating from
+the timetable ones with only a few "source" trains compared to other trains,
+for example.
+
+\chapter{Project management}
+
+Good time management is important in this project. The project started running
+behind schedule during the actual implementation, so the slack time available
+in which I would have attempted to carry out the stretch goals was instead
+taken up by the main goals, due in part to a higher than expected workload this
+semester. The final project was, however, submitted on time and to the
+originally-intended scope.
+
+Git was used for version control of source code and of reports.
+
+The first Gantt chart shows the planned work; the second shows the actual work.
 
 \includepdf{gantt.pdf}
+\includepdf{actgantt.pdf}
 
-(Update Gantt chart)
+\chapter{Conclusion}
 
-\section{Conclusion}
+This project has seen the creation of a system to continuously collect raw open
+data from the London Underground and to infer from historic data a fairly
+accurate timetable as well as to produce live arrival/departure times. The
+system contains a web interface which allows all this data to easily be
+browsed. All three main goals were fulfilled. This system is, in its current
+form, probably only interesting to enthusiasts, and does not provide much more
+information than existing systems. However, it lays the groundwork for either
+me or future developers to improve it and add more useful functionality, or
+even build entire systems around it, since it adds significant quality to the
+fairly difficult to use open data provided by London Underground.
 
-Summarise what has been done, and reflections about the state of open data in
-general (referring back to lit review, etc.)
+The database used in this project still contains every bit of useful
+information from the source data, but has supplemented it by providing vastly
+different and more useful forms with which to work, mainly live arrival and
+departure times for each stop, and the inferred timetable. By these means, open
+data is still available in its rawest forms should any projects require that,
+but processed data can also be used where it is convenient. This appears to be
+a good model for others performing processing on open data to follow.
 
-\subsection{Further work}
+Open data is still in its infancy, and the proliferation of sources of
+unrefined, neglected or artificially restricted data is testament to this. It
+should not be seen as surprising that many of these sources of data go unused
+by developers for a long time, simply because of the difficulties in
+transforming these data sources into a useful form. Writing this software was
+much more difficult than could originally have been envisaged by anyone who had
+not read the specification of TrackerNet. The major difficulties presented here
+are the station-centric nature of all the data, the caching of data for 30
+seconds (related to the decision to make it a pull, rather than push, service),
+and the lack of useful supplementary data such as timetables and track code
+maps with suitable keys for cross-referencing.
 
-Talk here mostly about stretch goals, etc.
+Many of these issues would not be too hard to solve through various technical
+means, but as it is, the developer is left with enough data to be interesting,
+but not enough to be usable without significant processing. Perhaps industries
+will work past problems like this, or perhaps they will persist despite the
+number of developers put off by them. In the case of the latter, more projects
+such as this will be required to improve the state of open data.
+
+This project will be made open source in due course, in order to aid the
+development of future London Underground applications.
+
+\section{Further work}
+
+This project lays the groundwork for a system, but the stretch goals would see
+that system carried to a logical next step. Firstly, a train prediction system
+can be written, This would take actual times and, by cross-referencing them
+with the timetable (among other things), calculate how late the train is, and
+how long it will take to catch up time. Since London Underground set numbers
+remain constant throughout the day, this could "follow" a late train's workings
+to determine how long it would take for delays to be absorbed.
+
+The next step would be to make use of track code data to build a map of track
+codes, and use this map to further improve the prediction system. This would
+provide even more useful data, in terms of the track code map, and would go
+some way towards being able to make a live and detailed signalling map of the
+system.
+
+There are some more features that could be added to the web interface, such as
+more search options, since the web interface is currently quite basic.
+
+Finally, any other developer could pick this up and do something unexpected.
+
+After taking a break, I might continue with these developments over the summer.
 
 \pagebreak
 
@@ -444,10 +672,14 @@ Talk here mostly about stretch goals, etc.
 
 \bibliography{references}
 
-\section*{Appendix A --- Code Sample}
+\chapter*{Appendix A --- Code Sample}
 
-\subsection*{trackernet\_access.py}
+\section*{trackernet\_access.py}
 
 \lstinputlisting{../code/trackernet_access.py}
+
+\chapter*{Appendix B --- Evaluation Data}
+
+\lstinputlisting{evaluation.txt}
 
 \end{document}
