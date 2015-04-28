@@ -1,42 +1,42 @@
 WEEKDAY TRAIN 235 TRIP 17
 
-Station              | WTT              | Calculated
-Walthamstow Central  | 1636             | 1634
-Blackhorse Road      | 1638             | 1637 (arr 1636)
-Tottenham Hale       | 1640½ (arr 1640) | 1639 (arr 1638)
-Seven Sisters        | 1643¼ (arr 1643) | 1641
-Finsbury Park        | 1646½            | 1646
-Highbury & Islington | 1649             | 1648 (arr 1647)
-King's Cross         | 1652             | 1650
-Euston               | 1653½            | 1652
-Warren Street        | 1655             | 1654
-Oxford Circus        | 1656¾            | 1657 (arr 1656)
-Green Park           | 1658¾            | 1659 (arr 1658)
-Victoria             | 1700¾            | 1701
-Pimlico              | 1702½            | 1704 (arr 1703)
-Vauxhall             | 1704             | 1705 (arr 1704)
-Stockwell            | 1706½            | 1706
-Brixton              | 1708½            | 1709
+Station              | WTT     | Calculated
+Walthamstow Central  | 1636    | 1634
+Blackhorse Road      | 1638    | 1637
+Tottenham Hale       | 1640.5  | 1639
+Seven Sisters        | 1643.25 | 1641
+Finsbury Park        | 1646.5  | 1646
+Highbury & Islington | 1649    | 1648
+Kings Cross          | 1652    | 1650
+Euston               | 1653.5  | 1652
+Warren Street        | 1655    | 1654
+Oxford Circus        | 1656.75 | 1657
+Green Park           | 1658.75 | 1659
+Victoria             | 1700.75 | 1701
+Pimlico              | 1702.5  | 1704
+Vauxhall             | 1704    | 1705
+Stockwell            | 1706.5  | 1706
+Brixton              | 1708.5  | 1709
 
 Total minutes out: 18 (1.125 per station)
 Maximum minutes out: 2
 
 WEEKDAY TRAIN 210 TRIP 26
 
-Station              | WTT              | Calculated
-Brixton              | 1823¾            | 1851 (!)
-Stockwell            | 1826 (arr 1825¾) | 1829
-Vauxhall             | 1828¼            | 1831
-Pimlico              | 1829½            | 1832
-Victoria             | 1831¾            | 1834
-Green Park           | 1833¾            | 1836
-Oxford Circus        | 1835¾            | 1838 (arr 1837)
-Warren Street        | 1837½            | 1840
-Euston               | 1839             | 1842 (arr 1841)
-King's Cross         | 1840¾            | 1843 (arr 1842)
-Highbury & Islington | 1843½            | 1845
-Finsbury Park        | 1846             | 1847
-Seven Sisters        | 1850¾ (arr 1849¾)| 1851
+Station              | WTT     | Calculated
+Brixton              | 1823.75 | 1851 (!)
+Stockwell            | 1826    | 1829
+Vauxhall             | 1828.25 | 1831
+Pimlico              | 1829.5  | 1832
+Victoria             | 1831.75 | 1834
+Green Park           | 1833.75 | 1836
+Oxford Circus        | 1835.75 | 1838
+Warren Street        | 1837.5  | 1840
+Euston               | 1839    | 1842
+Kings Cross          | 1840.75 | 1843
+Highbury & Islington | 1843.5  | 1845
+Finsbury Park        | 1846    | 1847
+Seven Sisters        | 1850.75 | 1851
 
 Total minutes out: 59 (31 excluding outlier) [4.5 per station
 (2.4 excluding outlier)]
@@ -50,66 +50,66 @@ WEEKDAY TRAIN 210 TRIP 35
 
 This train crosses the midnight boundary.
 
-Station              | WTT              | Calculated
-Walthamstow Central  | 2340½            | 2337
-Blackhorse Road      | 2342½            | 2342
-Tottenham Hale       | 2344½            | 2344
-Seven Sisters        | 2349½ (arr 2346½)| 2346
-Finsbury Park        | 2352¾            | 2352
-Highbury & Islington | 2355             | 2354
-King's Cross         | 2358             | 2357 (arr 2356)
-Euston               | 2359½            | 2358
-Warren Street        | 0001             | 0000 (arr 0001)
-Oxford Circus        | 0002¾            | 0002
-Green Park           | 0004½            | 0004
-Victoria             | 0006½            | 0007 (arr 0006)
-Pimlico              | 0008¼            | 0009 (arr 0008)
-Vauxhall             | 0009¾            | 0009
-Stockwell            | 0012             | 0011
-Brixton              | 0013¾            | 0014
+Station              | WTT     | Calculated
+Walthamstow Central  | 2340.5  | 2337
+Blackhorse Road      | 2342.5  | 2342
+Tottenham Hale       | 2344.5  | 2344
+Seven Sisters        | 2349.5  | 2346
+Finsbury Park        | 2352.75 | 2352
+Highbury & Islington | 2355    | 2354
+Kings Cross          | 2358    | 2357
+Euston               | 2359.5  | 2358
+Warren Street        | 0001    | 0000
+Oxford Circus        | 0002.75 | 0002
+Green Park           | 0004.5  | 0004
+Victoria             | 0006.5  | 0007
+Pimlico              | 0008.25 | 0009
+Vauxhall             | 0009.75 | 0009
+Stockwell            | 0012    | 0011
+Brixton              | 0013.75 | 0014
 
 Total minutes out: 14 (0.875 per station)
 Maximum minutes out: 3
 
 SATURDAY TRAIN 221 TRIP 10
 
-Station              | WTT              | Calculated
-Brixton              | 1108¼            | 1110 (arr 1109)
-Stockwell            | 1110¼            | 1110
-Vauxhall             | 1112½            | 1112
-Pimlico              | 1113¾            | 1113 (arr 1112)
-Victoria             | 1116             | 1116 (arr 1115)
-Green Park           | 1117¾            | 1117
-Oxford Circus        | 1119¾            | 1120 (arr 1119)
-Warren Street        | 1121½            | 1122 (arr 1121)
-Euston               | 1123             | 1123
-King's Cross         | 1124½            | 1124
-Highbury & Islington | 1126¼            | 1126
-Finsbury Park        | 1129½            | 1128
-Seven Sisters        | 1137¾ (arr 1132¾)| 1132 (arr 1131)
+Station              | WTT     | Calculated
+Brixton              | 1108.25 | 1110
+Stockwell            | 1110.25 | 1110
+Vauxhall             | 1112.5  | 1112
+Pimlico              | 1113.75 | 1113
+Victoria             | 1116    | 1116
+Green Park           | 1117.75 | 1117
+Oxford Circus        | 1119.75 | 1120
+Warren Street        | 1121.5  | 1122
+Euston               | 1123    | 1123
+Kings Cross          | 1124.5  | 1124
+Highbury & Islington | 1126.25 | 1126
+Finsbury Park        | 1129.5  | 1128
+Seven Sisters        | 1137.75 | 1132
 
 Total minutes out: 10 (0.769 per station)
 Maximum minutes out: 5
 
 SUNDAY TRAIN 236 TRIP 10
 
-Station              | WTT              | Calculated
-Brixton              | 1420             | 1419
-Stockwell            | 1422             | 1420
-Vauxhall             | 1424¼            | 1423
-Pimlico              | 1425½            | 1424
-Victoria             | 1427¾            | 1428 (arr 1427)
-Green Park           | 1429½            | 1430 (arr 1429)
-Oxford Circus        | 1431½            | 1431
-Warren Street        | 1433¼            | 1434 (arr 1433)
-Euston               | 1434¾            | 1435 (arr 1434)
-King's Cross         | 1436¼            | 1436 (arr 1435)
-Highbury & Islington | 1439             | 1438
-Finsbury Park        | 1441¼            | 1441 (arr 1440)
-Seven Sisters        | 1445½ (arr 1444¾)| 1444
-Tottenham Hale       | 1447             | 1447
-Blackhorse Road      | 1449             | 1449
-Walthamstow Central  | 1451½            | 1452 (arr 1451)
+Station              | WTT     | Calculated
+Brixton              | 1420    | 1419
+Stockwell            | 1422    | 1420
+Vauxhall             | 1424.25 | 1423
+Pimlico              | 1425.5  | 1424
+Victoria             | 1427.75 | 1428
+Green Park           | 1429.5  | 1430
+Oxford Circus        | 1431.5  | 1431
+Warren Street        | 1433.25 | 1434
+Euston               | 1434.75 | 1435
+Kings Cross          | 1436.25 | 1436
+Highbury & Islington | 1439    | 1438
+Finsbury Park        | 1441.25 | 1441
+Seven Sisters        | 1445.5  | 1444
+Tottenham Hale       | 1447    | 1447
+Blackhorse Road      | 1449    | 1449
+Walthamstow Central  | 1451.5  | 1452
 
 Total minutes out: 12 (0.75 per station)
 Maximum minutes out: 2

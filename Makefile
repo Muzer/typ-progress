@@ -7,7 +7,7 @@ report.pdf: report.tex references.bib
 	pdflatex report.tex
 	pdflatex report.tex
 
-final.pdf: final.tex references.bib
+final.pdf: final.tex references.bib evaluation.txt
 	pdflatex final.tex
 	bibtex final.aux
 	pdflatex final.tex
